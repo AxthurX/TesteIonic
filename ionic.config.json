@@ -1,0 +1,7 @@
+{
+  "name": "ionictt",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

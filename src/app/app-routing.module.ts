@@ -1,27 +1,51 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { ActionSheetPageModule } from './pages/action-sheet/action-sheet.module';
 
 const routes: Routes = [
-{path: '', redirectTo: 'inicio', pathMatch: 'full'},
-{path: 'inicio', loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule)},
-{path: 'action-sheet', loadChildren: () => import('./pages/action-sheet/action-sheet.module').then( m => m.ActionSheetPageModule)},
-{path: 'alert', loadChildren: () => import('./pages/alert/alert.module').then( m => m.AlertPageModule)},
-{path: 'item-group', loadChildren: () => import('./pages/item-group/item-group.module').then( m => m.ItemGroupPageModule)},
-{path: 'avatar', loadChildren: () => import('./pages/avatar/avatar.module').then( m => m.AvatarPageModule)},
-{path: 'botoes', loadChildren: () => import('./pages/botoes/botoes.module').then( m => m.BotoesPageModule)},
-{path: 'card', loadChildren: () => import('./pages/card/card.module').then( m => m.CardPageModule)},
   {
-    path: 'check',
-    loadChildren: () => import('./pages/check/check.module').then( m => m.CheckPageModule)
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
-
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/abas/abas.module').then((m) => m.AbasModule),
+  },
+  {
+    path: 'inicio',
+    loadChildren: () =>
+      import('./pages/abas/inicio/inicio.module').then((m) => m.InicioModule),
+  },
+  {
+    path: 'fotos',
+    loadChildren: () =>
+      import('./pages/abas/modais/fotos/fotos.module').then(
+        (m) => m.FotosModule
+      ),
+  },
+  {
+    path: 'maps',
+    loadChildren: () =>
+      import('./pages/abas/modais/maps/maps.module').then(
+        (m) => m.MapsModule
+      ),
+  },
+  {
+    path: 'input',
+    loadChildren: () =>
+      import('./pages/abas/modais/input/input.module').then(
+        (m) => m.InputPageModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

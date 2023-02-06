@@ -15,16 +15,16 @@ import {
 } from '@ionic-native/google-maps';
 import { LoadingController, Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Util } from '../../../../core/util.model';
 
 declare let google: any;
 
-
- @Component({
-   selector: 'app-outro-mapa',
-   templateUrl: './outro-mapa.component.html',
-   styleUrls: ['./outro-mapa.component.scss'],
- })
- export class OutroMapaComponent implements OnInit {
+@Component({
+  selector: 'app-outro-mapa',
+  templateUrl: './outro-mapa.component.html',
+  styleUrls: ['./outro-mapa.component.scss'],
+})
+export class OutroMapaComponent implements OnInit {
   @ViewChild('map', { static: true }) mapElement: any;
   directionsService = new google.maps.DirectionsService();
   directionsRenderer = new google.maps.DirectionsRenderer();
@@ -101,7 +101,7 @@ declare let google: any;
 
     const mapOptions = {
       center: latLng,
-      zoom: 18,
+      zoom: 14,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       disableDefaultUI: true,
     };
@@ -139,57 +139,21 @@ declare let google: any;
   }
 
   async loadPoints(Lat, Lng) {
-    this.markers = [];
+     this.markers = [];
+     for (const key of Object.keys(this.locais)) {
+       const latLng = new google.maps.LatLng(
+         this.locais[key].latitude,
+         this.locais[key].longitude
+       );
 
-    for (const key of Object.keys(this.locais)) {
-      // console.log('Rotas', this.locais[key].nome, this.locais[key].latitude, this.locais[key].longitude ]);
-      const latLng = new google.maps.LatLng(
-        this.locais[key].latitude,
-        this.locais[key].longitude
-      );
-
-      this.origem = { lat: Lat, lng: Lng };
-      this.destinos = {
-        lat: this.locais[key].latitude,
-        lng: this.locais[key].longitude,
-      };
-      this.waypoints = Array.from(this.locais).map(function(elemento) {
-        const lat = elemento.latitude;
-        const lng = elemento.longitude;
-        return  [
-          { location: lat, stopover: true },
-         // { location: lng, stopover: true }
-        ];
-      });
-      console.log( this.waypoints );
-      //console.log('this.waypoints', this.waypoints);
-      /* this.waypoints = [
-          { location: this.first, stopover: true },
-          { location: this.second, stopover: true },
-      ]; */
-
-      //  const marker = new google.maps.Marker({
-      //   position: latLng,
-      //   title: this.locais[key].nome,
-      // });
-
-      const content =
-        `
-          <div id="myid" class="item item-thumbnail-left item-text-wrap">
-            <ion-item>
-              <ion-row>
-              <h6>` +
-        this.locais[key].nome +
-        `</h6>
-              </ion-row>
-            </ion-item>
-          </div>
-          `;
-
-      // this.infoMarker(marker, content);
-      // marker.setMap(this.map);
-    }
-    return this.markers;
+       const marker = new google.maps.Marker({
+         position: latLng,
+         title: this.locais[key].nome,
+       });
+       marker.setMap(this.map);
+      }
+      Util.TratarErro(console.error());
+     return this.markers;
   }
 
   infoMarker(marker, content) {

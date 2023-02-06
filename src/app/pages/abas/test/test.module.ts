@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { TestComponent } from './test.component';
 import { SharedModule } from '../../../core/shared.module';
+import { TestComponent } from './test.component';
 
 @NgModule({
   declarations: [TestComponent],

@@ -61,8 +61,7 @@ export class Util {
       inputValue: textoSalvo,
       showCancelButton: true,
       heightAuto: false,
-      didOpen: () => {
-      },
+      didOpen: () => {},
     });
     if (text) {
       textoSalvo = text.toString();

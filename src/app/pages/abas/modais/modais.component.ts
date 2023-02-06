@@ -9,11 +9,9 @@ import { CheckPage } from './check/check.page';
 import { DateTimePage } from './date-time/date-time.page';
 import { FabPage } from './fab/fab.page';
 import { InputPage } from './input/input.page';
-import { ModalPage } from './modal/modal.page';
 import { Router } from '@angular/router';
 import { MapsComponent } from './maps/maps.component';
 import { OutroMapaComponent } from './outro-mapa/outro-mapa.component';
-import { DeepLinkComponent } from './deep-link/deep-link.component';
 
 @Component({
   selector: 'app-modais',
@@ -146,19 +144,6 @@ export class ModaisComponent implements OnInit {
     return await modal.present();
   }
 
-  async showTelaModal() {
-    const modal = await this.modal.create({
-      component: ModalPage
-    });
-
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned !== null) {
-      }
-    });
-
-    return await modal.present();
-  }
-
   async showTelaMaps() {
     const modal = await this.modal.create({
       component: MapsComponent
@@ -183,19 +168,6 @@ export class ModaisComponent implements OnInit {
      });
 
      return await modal.present();
-  }
-
-  async showTelaDeepLink() {
-    const modal = await this.modal.create({
-      component: DeepLinkComponent
-    });
-
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned !== null) {
-      }
-    });
-
-    return await modal.present();
   }
 
   goTo(rota) {

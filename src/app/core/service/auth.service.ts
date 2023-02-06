@@ -87,4 +87,3 @@ export class DadosEmpresa {
   juros_mensal_contas_a_receber_em_atraso?: number;
   dias_tolerancia_cobrar_juros?: number;
 }
-

@@ -93,7 +93,18 @@ export class MapsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-      this.loadMap(-8.759574235374517, -63.891267252769175);
+    this.platform.ready().then(() => {
+      this.geolocation
+        .getCurrentPosition()
+        .then((result) => {
+          this.loadMap(result.coords.latitude, result.coords.longitude);
+        })
+        .catch((e) => {
+          console.log('erro ao pegar a localozação');
+          Util.TratarErro(e);
+        });
+    });
+      //this.loadMap(-8.759574235374517, -63.891267252769175);
   }
 
   async loadMap(lat, lng) {

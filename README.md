@@ -1,3 +1,4 @@
 # IonicTests
 
-Aplicativo ionic para teste ou possiveis implementações
+Aplicativo ionic para teste ou possiveis implementaçõs.
+
